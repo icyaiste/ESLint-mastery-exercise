@@ -1,3 +1,6 @@
+import { readFile } from "fs/promises";
+
+
 const greet = (firstName: string) => {
     return `Hello ${  firstName}`;
 }; 
@@ -38,3 +41,44 @@ type checkAuth = {
 
 const checkAuth = (user: checkAuth) => {return user.isAdmin;};
 console.log(checkAuth({ isAdmin:false }));
+
+
+const read = async (path: string): Promise<void> => {
+  try {
+    const data = await readFile(path, "utf-8");
+    console.log(`File content:\n${data}`);
+  } catch (error) {
+    console.error(`Failed to read file at ${path}:`, error);
+  }
+};
+
+export default read;
+
+const getData = async (url: string): Promise<unknown> => {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch data from ${url}: ${error}`);
+  }
+};
+
+const process = (data: number[]): number[] => {
+    return data.
+    filter((x: number): boolean => {
+      return x > 10;
+    })
+    .map((x: number): number => {
+      return x * 2;
+    });
+};
+
+const logErr = (message: string):void => {
+    console.error(`Error: ${message}`);
+}; 
