@@ -21,7 +21,6 @@ export default defineConfig([
         "eol-last": ["error", "always"],
         "no-unneeded-ternary": ["error", { "defaultAssignment": false }],
         "@typescript-eslint/no-explicit-any": "error",
-        "capitalized-comments": ["warn", "always"],
         }
       }
 ]);
